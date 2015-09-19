@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h1= title
+  p All participants
+  table
+    tr
+      th User
+      - for (var i = 1; i <= 7; i++)
+        th Question #{i}
+      th Total
+      th Timestamp
+    - for (var user in stats)
+      tr
+        td #{user}
+        - for (var i = 1; i <= 7; i++)
+          td #{stats[user].correct[i] ? "Yes" : "No, " + stats[user].answers[i]}
+        td #{stats[user].score}
+        td #{stats[user].time}
