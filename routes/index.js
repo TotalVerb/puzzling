@@ -4,16 +4,14 @@ var flatfile = require('flat-file-db');
 var db = flatfile('/tmp/my.db');
 
 var ANSWERS = {
-  1: 1,
-  2: 2,
-  3: 3,
-  4: 4,
+  1: 1189279,
+  2: 62011,
+  3: 7804,
+  4: 385,
 };
 
 /* POST submit page. */
 router.post('/submit', function(req, res, next) {
-    console.log(req);
-    console.log(req.body.answer);
     var answers = db.get(req.body.name);
 
     if (answers === undefined) {
