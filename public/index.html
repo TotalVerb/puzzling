@@ -134,7 +134,35 @@
                 <label>Answer: <input type="number" /></label> <button type="submit">Submit</button>
             </p>
         </article>
+        <article>
+            <h1>Puzzle 7: Collatz chains</h1>
+            <p>
+              The collatz chain for the number n is a sequence that starts with the number n, and
+              to get the next number, one follows the following rule:
+            </p>
+            <ul>
+              <li> If the number is even, the it is halved</li>
+              <li> If the number is odd, then it is multiplied by 3 and then 1 is added to it</li>
+            </ul>
+            <p> Find the lowest number whose collatz chain contains the number 8153620 </p>
+            <svg width="500" height="500">
+                <defs>
+                    <pattern id="gridPattern" width="40" height="40"
+                             patternUnits="userSpaceOnUse">
 
+                        <rect stroke="black" stroke-width="2" fill="white" x="0" y="0" width="40" height="40" />
+                    </pattern>
+                </defs>
+
+                <g transform="translate(50,50)">
+                    <rect fill="url(#gridPattern)" x="0"
+                          y="0" width="400" height="400" />
+                </g>
+            </svg>
+            <p class="submit" id="submit-1">
+                <label>Answer: <input type="number" /></label> <button type="submit">Submit</button>
+            </p>
+        </article>
     </main>
 
     <script type="text/javascript">
