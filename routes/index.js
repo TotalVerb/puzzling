@@ -9,6 +9,8 @@ var ANSWERS = {
   3: 62011,
   4: 7804,
   5: 385,
+  6: 0,
+  7: 4591
 };
 
 /* POST submit page. */
