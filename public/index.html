@@ -49,25 +49,18 @@
                 <var>b</var><sub><var>n</var></sub> to be the <var>n</var><sup>th</sup> positive integer not in
                 sequence <var>a</var>. Compute <var>b</var><sub>1000000</sub>.
             </p>
-        </article>
-
-        <article>
-            <h1>Puzzle 3: Frankly Fibonacci</h1>
-            <p>
-                Define <code>F<sub>1</sub> = 1</code> and <code>F<sub>2</sub> = 1</code>. Then let
-                <code>F<sub>n</sub> = F<sub>n-1</sub> + F<sub>n-2</sub></code>. Compute the remainder of
-                <code>F<sub>2<sup>100</sup></sub> &divide; 2<sup>16</sup></code>. (That is, the Fibonacci number
-                with index 2<sup>100</sup>!)
-            </p>
-            <p class="submit" id="submit-3">
+            <p class="submit" id="submit-1">
                 <label>Answer: <input type="number" /></label> <button type="submit">Submit</button>
             </p>
         </article>
 
         <article>
-            <h1>Puzzle 2: Pretty Prime</h1>
+            <h1>Puzzle 2: Frankly Fibonacci</h1>
             <p>
-                How many prime numbers are there between 2 and 79661, inclusive?
+                Define <code>F<sub>1</sub> = 1</code> and <code>F<sub>2</sub> = 1</code>. Then let
+                <code>F<sub>n</sub> = F<sub>n-1</sub> + F<sub>n-2</sub></code>. Compute the remainder of
+                <code>F<sub>2<sup>100</sup></sub> &divide; 2<sup>16</sup></code>. (That is, the Fibonacci number
+                with index 2<sup>100</sup>!)
             </p>
             <p class="submit" id="submit-2">
                 <label>Answer: <input type="number" /></label> <button type="submit">Submit</button>
@@ -75,7 +68,17 @@
         </article>
 
         <article>
-            <h1>Puzzle 1: Somewhat Square</h1>
+            <h1>Puzzle 3: Pretty Prime</h1>
+            <p>
+                How many prime numbers are there between 2 and 79661, inclusive?
+            </p>
+            <p class="submit" id="submit-3">
+                <label>Answer: <input type="number" /></label> <button type="submit">Submit</button>
+            </p>
+        </article>
+
+        <article>
+            <h1>Puzzle 4: Somewhat Square</h1>
             <p>
                 How many squares are there in the following diagram? Count only squares with vertices at lattice points
                 and where all four edges are black lines.
@@ -94,7 +97,7 @@
                           y="0" width="400" height="400" />
                 </g>
             </svg>
-            <p class="submit" id="submit-1">
+            <p class="submit" id="submit-4">
                 <label>Answer: <input type="number" /></label> <button type="submit">Submit</button>
             </p>
         </article>
@@ -103,26 +106,31 @@
     </main>
 
     <script type="text/javascript">
+
+        function activateSubmission(sub) {
+          var number = +sub.id.split('-')[1];
+          var ans = sub.querySelector('input');
+          console.log(ans);
+          var but = sub.querySelector('button');
+          but.addEventListener('click', function(e) {
+            ans.className = '';
+            $.post('/submit', {
+                name: document.getElementById('name').value,
+                problem: number,
+                answer: +ans.value
+            }).then(function(res) {
+                if (res.correct) {
+                    ans.className = 'good';
+                } else {
+                    ans.className = 'bad';
+                }
+            });
+          });
+        }
         var submissions = document.querySelectorAll(".submit");
         for (var i = 0; i < submissions.length; i++) {
             var sub = submissions[i];
-            var number = +sub.id.split('-')[1];
-            var ans = sub.querySelector('input');
-            var but = sub.querySelector('button');
-            but.addEventListener('click', function(e) {
-                ans.className = '';
-                $.post('/submit', {
-                    name: $('#name').value,
-                    problem: number,
-                    answer: +ans.value
-                }).then(function(res) {
-                    if (res.correct) {
-                        ans.className = 'good';
-                    } else {
-                        ans.className = 'bad';
-                    }
-                });
-            });
+            activateSubmission(sub);
         }
     </script>
 </body>
