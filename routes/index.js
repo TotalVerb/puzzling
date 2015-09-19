@@ -4,10 +4,11 @@ var flatfile = require('flat-file-db');
 var db = flatfile('/tmp/my.db');
 
 var ANSWERS = {
-  1: 1189279,
-  2: 62011,
-  3: 7804,
-  4: 385,
+  1: 7699,
+  2: 1189279,
+  3: 62011,
+  4: 7804,
+  5: 385,
 };
 
 /* POST submit page. */
